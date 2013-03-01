@@ -1,0 +1,255 @@
+<?php
+// $Id: snocountry_hub.install,v 1.41 2008/12/09 21:50:48 bdragon Exp $
+
+/**
+ * @file
+ * Installation / uninstallation routines.
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function snocountry_hub_install() {
+  drupal_install_schema('snocountry_hub');
+}
+
+/**
+ * Implentation of hook_uninstall().
+ */
+function snocountry_hub_uninstall() {
+  drupal_uninstall_schema('snocountry_hub');
+
+  // Delete variables.if any
+}
+
+/**
+ * Implementation of hook_schema().
+ * 
+ * 
+*/
+function snocountry_hub_schema() {
+  $schema['snocountry_hub_reports'] = array(
+    'description' => 'snocountry_hub data managed by snocountry_hub.module.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'Primary Key: Unique snocountry_hub ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'rid' => array(
+        'description' => 'Sno Country ID',
+        'type' => 'varchar',
+        'length' => 25,
+        'default' => '',
+        'not null' => TRUE,
+      ),
+      'resortName' => array(
+        'description' => 'Name of Resort',
+        'type' => 'varchar',
+        'length' => 125,
+        'default' => '',
+        'not null' => TRUE,
+      ),
+      'state' => array(
+        'description' => 'State Location',
+        'type' => 'varchar',
+        'length' => 50,
+        'default' => '',
+        'not null' => TRUE,
+      ),
+      'reportDateTime' => array(
+        'description' => 'Date Time string of report',
+        'type' => 'varchar',
+        'length' => 50,
+        'default' => '',
+        'not null' => TRUE,
+      ),
+     'operatingStatus' => array(
+        'description' => 'Operational status of resort',
+        'type' => 'varchar',
+        'length' => 125,
+        'default' => '',
+        'not null' => TRUE,
+      ),
+      'resortType' => array(
+        'description' => 'Type of resort',
+        'type' => 'varchar',
+        'length' => 125,
+        'default' => '',
+        'not null' => TRUE,
+      ),
+      'newSnowMin' => array(
+        'description' => 'Minimum new snow, unit=inches',
+        'type' => 'numeric',
+        'precision' => 5,
+        'scale' => 2,
+        'not null' => TRUE,
+        'default' => 0.0,
+      ),  
+      'newSnowMax' => array(
+        'description' => 'Maximum new snow, unit=inches',
+        'type' => 'numeric',
+        'precision' => 5,
+        'scale' => 2, 
+        'not null' => TRUE,
+       	'default' => 0.0,
+      ),
+      'primarySurfaceCondition' => array(
+        'description' => 'Primary surface conditions',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => TRUE,
+			),
+      'avgBaseDepthMin' => array(
+        'description' => 'Minimum Average Base Depth',
+        'type' => 'numeric',
+        'precision' => 5,
+        'scale' => 2, 
+        'not null' => TRUE,
+        'default' => 0.0,
+      ),  
+      'avgBaseDepthMax' => array(
+        'description' => 'Maximum Average Base Depth',
+        'type' => 'numeric',
+        'precision' => 5,
+        'scale' => 2, 
+        'not null' => TRUE,
+        'default' => 0.0,
+      ),   
+      'openDownHillTrails' => array(
+        'description' => 'Number of open trails.',
+        'type' => 'numeric',
+        'precision' => 3,
+        'scale' => 0, 
+        'not null' => TRUE,
+        'default' => 0,
+      ),  
+      'openDownHillLifts' => array(
+        'description' => 'Number of open lifts',
+        'type' => 'numeric',
+        'precision' => 3,
+        'scale' => 0, 
+        'not null' => TRUE,
+        'default' => 0,
+      ),  
+      'openDownHillMiles' => array(
+        'description' => 'Open miles of ski trails',
+        'type' => 'numeric',
+        'precision' => 5,
+        'scale' => 2, 
+        'not null' => TRUE,
+        'default' => 0.0,
+      ),  
+      'openDownHillAcres' => array(
+        'description' => 'Open acres of skiable terrain',
+        'type' => 'numeric',
+        'precision' => 5,
+        'scale' => 2, 
+        'not null' => TRUE,
+        'default' => 0.0,
+      ), 
+      'openDownHillPercent' => array(
+        'description' => 'Percent of total open terrain',
+        'type' => 'numeric',
+        'precision' => 5,
+        'scale' => 2, 
+        'not null' => TRUE,
+        'default' => 0.0,
+      ),
+      'nightSkiing' => array(
+        'description' => 'Night skiing boolean yes/no',
+        'type' => 'varchar',
+        'length' => 5,
+        'default' => '',
+        'not null' => TRUE,
+			),
+      'weekendHours' => array(
+        'description' => 'Weekend Hours of Operation',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => TRUE,
+      ), 
+      'weekdayHours' => array(
+        'description' => 'Weekday Hours of Operation',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => TRUE,
+      ), 
+      'snowComments' => array(
+        'description' => 'General conditions comment',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => TRUE,
+      ),
+      'secondarySurfaceCondition' => array(
+        'description' => 'Secondary surface conditions',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => TRUE,
+			
+			),
+      'parksNPipes' => array(
+        'description' => 'Terrain park status',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => TRUE,
+      ), 
+      'ts' => array(
+        'description' => t('A Unix timestamp indicating when the record was created.'),
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  
+  // Copied from system.module.
+  $schema['cache_snocountry_hub'] = array(
+    'description' => t('Generic cache table for caching things not separated out into their own tables. Contributed modules may also use this to store cached items.'),
+    'fields' => array(
+      'cid' => array(
+        'description' => t('Primary Key: Unique cache ID.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => ''),
+      'data' => array(
+        'description' => t('A collection of data to cache.'),
+        'type' => 'blob',
+        'not null' => FALSE,
+        'size' => 'big'),
+      'expire' => array(
+        'description' => t('A Unix timestamp indicating when the cache entry should expire, or 0 for never.'),
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0),
+      'created' => array(
+        'description' => t('A Unix timestamp indicating when the cache entry was created.'),
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0),
+      'headers' => array(
+        'description' => t('Any custom HTTP headers to be added to cached data.'),
+        'type' => 'text',
+        'not null' => FALSE),
+      'serialized' => array(
+        'description' => t('A flag to indicate whether content is serialized (1) or not (0).'),
+        'type' => 'int',
+        'size' => 'small',
+        'not null' => TRUE,
+        'default' => 0)
+      ),
+    'indexes' => array('expire' => array('expire')),
+    'primary key' => array('cid'),
+  );
+
+  return $schema;
+}
